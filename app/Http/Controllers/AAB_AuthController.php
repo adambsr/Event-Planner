@@ -34,7 +34,7 @@ class AAB_AuthController extends Controller
                 return redirect()->intended(route('events.list'));
             }
             
-            return redirect()->intended(route('events.index'));
+            return redirect()->intended(route('home'));
         }
 
         return redirect()->route('login')

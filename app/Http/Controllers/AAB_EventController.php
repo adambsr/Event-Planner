@@ -104,7 +104,7 @@ class AAB_EventController extends Controller
 
         AAB_Event::create($validated);
 
-        return redirect()->route('events.index')
+        return redirect()->route('events.list')
             ->with('success', 'Event created successfully.');
     }
 
