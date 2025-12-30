@@ -14,9 +14,9 @@ This document presents the findings from static testing activities performed on 
 
 | Session | Date | Reviewers | Files Reviewed |
 |---------|------|-----------|----------------|
-| Session 1 | 2025-12-26 | AI-Assisted Review | Controllers |
-| Session 2 | 2025-12-26 | AI-Assisted Review | Models |
-| Session 3 | 2025-12-26 | AI-Assisted Review | Routes & Middleware |
+| Session 1 | 2025-12-26 | Adam, Afra | Controllers |
+| Session 2 | 2025-12-26 | Adam, Afra | Models |
+| Session 3 | 2025-12-26 | Adam, Afra | Routes & Middleware |
 
 ---
 
@@ -205,6 +205,6 @@ if (!Auth::check()) {
 
 ---
 
-**Document Version**: 1.0  
-**Date**: December 26, 2025  
-**Reviewer**: AI-Assisted Code Analysis
+**Document Version**: 1.1  
+**Date**: December 29, 2025  
+**Reviewed by**: Adam, Afra

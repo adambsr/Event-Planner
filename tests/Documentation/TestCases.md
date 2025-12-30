@@ -162,10 +162,19 @@ This document contains all test cases organized by module and test level. Each t
 
 ### 8.2 Performance Tests
 
-| TC ID | Test Case | Technique | Level | Type | Preconditions | Test Steps | Expected Result | Priority |
-|-------|-----------|-----------|-------|------|---------------|------------|-----------------|----------|
-| TC-PERF-001 | Home Page Load Time | Benchmark | System | Performance | None | Load home page | Response time < 3 seconds | Medium |
-| TC-PERF-002 | Login Response Time | Benchmark | System | Performance | None | Complete login | Response time < 2 seconds | Medium |
+| TC ID | Test Case | Technique | Level | Type | Preconditions | Test Steps | Expected Result | Priority | Status |
+|-------|-----------|-----------|-------|------|---------------|------------|-----------------|----------|--------|
+| TC-PERF-001 | Home Page Load Time | Benchmark | System | Performance | Application running, events in DB | Load home page, measure time | Response time < 3 seconds | Medium | ✅ Implemented |
+| TC-PERF-002 | Login Response Time | Benchmark | System | Performance | Valid user exists | Complete login, measure time | Response time < 2 seconds | Medium | ✅ Implemented |
+| TC-PERF-003 | Events Pagination Performance | Benchmark | System | Performance | 20+ events in DB | Load paginated events list | Response time < 3 seconds | Medium | ✅ Implemented |
+| TC-PERF-004 | Search Performance | Benchmark | System | Performance | Events in DB | Perform search query | Response time < 3 seconds | Medium | ✅ Implemented |
+
+### 8.3 Bonus Tests (Playwright)
+
+| TC ID | Test Case | Technique | Level | Type | Preconditions | Test Steps | Expected Result | Priority | Status |
+|-------|-----------|-----------|-------|------|---------------|------------|-----------------|----------|--------|
+| TC-PW-001 | Complete User Journey | Use Case Testing | System | Functional | Application running | Register → Login → Browse → Register for event | All steps succeed on Chrome/Firefox/Safari | Medium | ✅ Implemented |
+| TC-PW-002 | Visual Regression - Login | Visual Comparison | System | Non-Functional | Application running | Capture login page screenshot | Visual baseline captured | Low | ✅ Implemented |
 
 ---
 
@@ -178,6 +187,8 @@ This document contains all test cases organized by module and test level. Each t
 | Unit | 10 |
 | Integration | 25 |
 | System | 35 |
+| Performance | 4 |
+| Bonus | 6 |
 
 ### By Test Type
 
@@ -185,7 +196,8 @@ This document contains all test cases organized by module and test level. Each t
 |------|-------|
 | Functional | 63 |
 | Non-Functional (Security) | 4 |
-| Non-Functional (Performance) | 2 |
+| Non-Functional (Performance) | 4 |
+| Bonus (Cross-browser) | 6 |
 
 ### By Technique
 
@@ -197,8 +209,11 @@ This document contains all test cases organized by module and test level. Each t
 | Use Case Testing | 15 |
 | State Transition | 3 |
 | White Box | 2 |
+| Benchmark | 4 |
+| Visual Comparison | 1 |
 
 ---
 
-**Document Version**: 1.0  
-**Date**: December 26, 2025
+**Document Version**: 1.1  
+**Date**: December 29, 2025  
+**Test Team**: Adam, Afra

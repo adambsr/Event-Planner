@@ -51,6 +51,7 @@ vendor\bin\phpunit
 | RegistrationTest.php | 10 | Event registration tests |
 | CategoryTest.php | 9 | Category CRUD tests |
 | ProfileTest.php | 9 | Profile management tests |
+| **PerformanceTest.php** | 4 | Performance benchmark tests (TC-PERF-001 to TC-PERF-004) |
 
 ### 2.2 Selenium/Pytest Tests
 
@@ -69,6 +70,21 @@ pytest tests/ -v
 | test_002_registration.py | 7 | User registration |
 | test_003_events.py | 6 | Event browsing and search |
 | test_004_event_registration.py | 5 | Event registration flow |
+
+### 2.3 Playwright Tests (Bonus)
+
+To execute Playwright tests:
+```bash
+cd c:\xampp\htdocs\AAB_EventPlanner\tests\Playwright
+npm install
+npx playwright install
+npm test
+```
+
+#### Playwright Test Files
+| Test File | Tests | Description |
+|-----------|-------|-------------|
+| user-journey.spec.ts | 6 | Complete user journey (cross-browser) |
 
 ---
 
@@ -278,15 +294,23 @@ pytest tests/test_001_login.py -v
 
 # Run smoke tests only
 pytest tests/ -v -m smoke
+
+# Run Performance tests
+php artisan test tests/Feature/PerformanceTest.php -v
+
+# Run Playwright tests
+cd tests/Playwright
+npm test
 ```
 
 ### B. Known Issues
 - Selenium tests require application to be running
 - Database must be seeded before test execution
 - Some tests may be skipped if no test data exists
+- Playwright tests require Chrome, Firefox, and Safari browsers installed
 
 ---
 
-**Document Version**: 1.0  
-**Date**: December 26, 2025  
-**Prepared By**: AI-Assisted Test Team
+**Document Version**: 1.1  
+**Date**: December 29, 2025  
+**Test Team**: Adam, Afra

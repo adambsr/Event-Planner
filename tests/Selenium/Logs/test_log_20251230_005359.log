@@ -1,0 +1,55 @@
+2025-12-30 00:54:00 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-001: Login Page Accessible ***
+2025-12-30 00:54:04 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-001: PASSED ***
+2025-12-30 00:54:07 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-001: Valid Admin Login ***
+2025-12-30 00:54:15 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-001: PASSED ***
+2025-12-30 00:54:18 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-002: Valid User Login ***
+2025-12-30 00:54:31 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-002: PASSED ***
+2025-12-30 00:54:34 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-003: Invalid Login - Wrong Password ***
+2025-12-30 00:54:40 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-003: PASSED ***
+2025-12-30 00:54:44 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-004: Invalid Login - Non-existent Email ***
+2025-12-30 00:54:50 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-004: PASSED ***
+2025-12-30 00:54:54 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-006: Invalid Email Format ***
+2025-12-30 00:55:01 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-006: PASSED ***
+2025-12-30 00:55:04 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-002: Register Page Accessible ***
+2025-12-30 00:55:08 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-002: PASSED ***
+2025-12-30 00:55:11 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-010: Valid Registration ***
+2025-12-30 00:55:19 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-010: PASSED ***
+2025-12-30 00:55:22 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-012: Password Mismatch ***
+2025-12-30 00:55:30 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-012: PASSED ***
+2025-12-30 00:55:33 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-013: Password Too Short ***
+2025-12-30 00:55:41 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-013: PASSED ***
+2025-12-30 00:55:44 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-014: Password At Minimum Length ***
+2025-12-30 00:55:53 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-014: PASSED ***
+2025-12-30 00:55:57 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-015: Empty Name ***
+2025-12-30 00:56:02 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-015: PASSED ***
+2025-12-30 00:56:06 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-NAVIGATE: Register to Login Navigation ***
+2025-12-30 00:56:13 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-NAVIGATE: PASSED ***
+2025-12-30 00:56:16 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-001: Public Events Listing ***
+2025-12-30 00:56:25 - AAB_EventPlanner_Tests - INFO - Found 6 events on home page
+2025-12-30 00:56:25 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-001: PASSED ***
+2025-12-30 00:56:28 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-010: Search Events by Title ***
+2025-12-30 00:56:36 - AAB_EventPlanner_Tests - INFO - Initial event count: 6
+2025-12-30 00:56:39 - AAB_EventPlanner_Tests - INFO - Searched for: Educational
+2025-12-30 00:56:39 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-010: PASSED ***
+2025-12-30 00:56:42 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-012: Search No Results ***
+2025-12-30 00:57:06 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-012: PASSED ***
+2025-12-30 00:57:09 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-030: View Event Details ***
+2025-12-30 00:57:23 - AAB_EventPlanner_Tests - INFO - Viewing event: Educational Event
+2025-12-30 00:57:23 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-030: PASSED ***
+2025-12-30 00:57:27 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-HOME: Public Access ***
+2025-12-30 00:57:37 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-HOME: PASSED ***
+2025-12-30 00:57:40 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-USER: Logged In Event View ***
+2025-12-30 00:57:56 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-USER: PASSED ***
+2025-12-30 00:58:00 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-001: Register for Event ***
+2025-12-30 00:58:22 - AAB_EventPlanner_Tests - INFO - Already registered or register button not visible
+2025-12-30 00:58:22 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-001: PASSED ***
+2025-12-30 00:58:26 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-004: Register Without Login ***
+2025-12-30 00:58:48 - AAB_EventPlanner_Tests - INFO - Register button not visible for guest
+2025-12-30 00:58:48 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-004: PASSED ***
+2025-12-30 00:58:51 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-005: Unregister from Event ***
+2025-12-30 00:59:29 - AAB_EventPlanner_Tests - INFO - Neither register nor unregister button visible
+2025-12-30 00:59:29 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-005: PASSED ***
+2025-12-30 00:59:32 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-010: View My Registrations ***
+2025-12-30 00:59:44 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-010: PASSED ***
+2025-12-30 00:59:48 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-AUTH: My Registrations Auth ***
+2025-12-30 00:59:54 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-AUTH: PASSED ***

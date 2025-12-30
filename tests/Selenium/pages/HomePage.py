@@ -8,6 +8,7 @@ Related Test Cases: TC-EVT-001, TC-EVT-010 to TC-EVT-022
 """
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from pages.BasePage import BasePage
 
@@ -20,18 +21,17 @@ class HomePage(BasePage):
 
     # Locators - Element identifiers on the home page
     SEARCH_INPUT = (By.NAME, "search")
-    SEARCH_BUTTON = (By.CSS_SELECTOR, "button[type='submit']")
     CATEGORY_FILTER = (By.NAME, "category_id")
     WEEKDAY_FILTER = (By.NAME, "weekday")
     EVENT_CARDS = (By.CSS_SELECTOR, ".event-card")
     EVENT_TITLE = (By.CSS_SELECTOR, ".event-card .event-title")
-    EVENT_LINK = (By.CSS_SELECTOR, ".event-card a")
-    NO_EVENTS_MESSAGE = (By.CSS_SELECTOR, ".no-events")
+    NO_EVENTS_MESSAGE = (By.XPATH, "//p[contains(text(), 'No events found')]")
     USER_DROPDOWN = (By.CSS_SELECTOR, ".user-dropdown")
     LOGOUT_LINK = (By.CSS_SELECTOR, "a[href*='logout']")
     LOGIN_LINK = (By.CSS_SELECTOR, "a[href*='login']")
     PAGINATION = (By.CSS_SELECTOR, ".pagination")
     HEADER = (By.CSS_SELECTOR, "header")
+    FILTER_FORM = (By.ID, "filterForm")
 
     def __init__(self, driver):
         """
@@ -45,12 +45,15 @@ class HomePage(BasePage):
     def search_events(self, search_term):
         """
         Search for events by keyword.
+        Uses Enter key to submit since there's no search button.
         
         Args:
             search_term: Search keyword
         """
-        self.enter_text(self.SEARCH_INPUT, search_term)
-        self.click_element(self.SEARCH_BUTTON)
+        search_input = self.get_element(self.SEARCH_INPUT)
+        search_input.clear()
+        search_input.send_keys(search_term)
+        search_input.send_keys(Keys.RETURN)
 
     def filter_by_category(self, category_id):
         """
@@ -99,8 +102,9 @@ class HomePage(BasePage):
     def click_first_event(self):
         """
         Click on the first event card to view details.
+        Event cards use onclick to navigate, so we click the card directly.
         """
-        self.click_element(self.EVENT_LINK)
+        self.click_element(self.EVENT_CARDS)
 
     def click_event_by_title(self, title):
         """
@@ -115,7 +119,7 @@ class HomePage(BasePage):
         events = self.driver.find_elements(*self.EVENT_CARDS)
         for event in events:
             if title in event.text:
-                event.find_element(By.TAG_NAME, "a").click()
+                event.click()
                 return True
         return False
 

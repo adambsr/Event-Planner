@@ -1,0 +1,7 @@
+2025-12-30 00:18:26 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-010: Search Events by Title ***
+2025-12-30 00:18:45 - AAB_EventPlanner_Tests - INFO - Initial event count: 6
+2025-12-30 00:18:48 - AAB_EventPlanner_Tests - INFO - Searched for: Educational
+2025-12-30 00:18:48 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-010: PASSED ***
+2025-12-30 00:18:51 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-030: View Event Details ***
+2025-12-30 00:19:16 - AAB_EventPlanner_Tests - INFO - Viewing event: Educational Event
+2025-12-30 00:19:16 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-030: PASSED ***

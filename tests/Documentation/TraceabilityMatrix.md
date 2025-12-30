@@ -76,6 +76,22 @@ This document provides bidirectional traceability between requirements, test sce
 | REQ-SEC-02 | Admin routes require admin role | Role authorization | TC-SEC-002 | System | Implemented |
 | REQ-SEC-03 | CSRF protection on forms | CSRF validation | TC-SEC-003 | Integration | Implemented |
 
+### 2.7 Performance Requirements (Non-Functional)
+
+| Req ID | Requirement | Test Scenario | Test Cases | Test Level | Status |
+|--------|-------------|---------------|------------|------------|--------|
+| REQ-PERF-01 | Home page loads within 3 seconds | Page load performance | TC-PERF-001 | System | ✅ Implemented |
+| REQ-PERF-02 | Login completes within 2 seconds | Authentication performance | TC-PERF-002 | System | ✅ Implemented |
+| REQ-PERF-03 | Pagination performs well | List performance | TC-PERF-003 | System | ✅ Implemented |
+| REQ-PERF-04 | Search responds quickly | Search performance | TC-PERF-004 | System | ✅ Implemented |
+
+### 2.8 Bonus Tests (Playwright)
+
+| Req ID | Requirement | Test Scenario | Test Cases | Test Level | Status |
+|--------|-------------|---------------|------------|------------|--------|
+| REQ-PW-01 | Cross-browser compatibility | User journey on multiple browsers | TC-PW-001 | System | ✅ Implemented |
+| REQ-PW-02 | Visual regression | Login page appearance | TC-PW-002 | System | ✅ Implemented |
+
 ---
 
 ## 3. Test Case to Implementation Matrix
@@ -140,9 +156,11 @@ This document provides bidirectional traceability between requirements, test sce
 | Level | Planned | Implemented | Coverage |
 |-------|---------|-------------|----------|
 | Unit | 10 | 9 | 90% |
-| Integration | 25 | 20 | 80% |
+| Integration | 25 | 24 | 96% |
 | System | 35 | 17 | 49% |
-| **Total** | **70** | **46** | **66%** |
+| Performance | 4 | 4 | 100% |
+| Bonus (Playwright) | 6 | 6 | 100% |
+| **Total** | **80** | **60** | **75%** |
 
 ### 4.2 Test Type Coverage
 
@@ -150,7 +168,7 @@ This document provides bidirectional traceability between requirements, test sce
 |------|---------|-------------|----------|
 | Functional | 63 | 43 | 68% |
 | Non-Functional (Security) | 4 | 3 | 75% |
-| Non-Functional (Performance) | 2 | 0 | 0% |
+| Non-Functional (Performance) | 4 | 4 | 100% |
 
 ### 4.3 Feature Coverage
 
@@ -162,6 +180,8 @@ This document provides bidirectional traceability between requirements, test sce
 | Categories | 6 | 5 | 83% |
 | Profile | 6 | 4 | 67% |
 | Security | 4 | 3 | 75% |
+| Performance | 4 | 4 | 100% |
+| Bonus (Playwright) | 6 | 6 | 100% |
 
 ---
 
@@ -174,8 +194,11 @@ This document provides bidirectional traceability between requirements, test sce
 - [x] Critical features have system-level tests
 - [x] Integration points are tested
 - [x] Security requirements are covered
+- [x] Performance requirements are covered
+- [x] Bonus tool (Playwright) implemented
 
 ---
 
-**Document Version**: 1.0  
-**Date**: December 26, 2025
+**Document Version**: 1.1  
+**Date**: December 29, 2025  
+**Test Team**: Adam, Afra

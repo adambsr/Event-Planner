@@ -162,10 +162,11 @@ The System Under Test (SUT) is a complete event management system that includes:
 
 1. Static Test Evidence (Code Review Report)
 2. Test Cases Documentation (Markdown tables)
-3. Automated Test Scripts (PHPUnit + Selenium/Pytest POM)
-4. Test Execution Report
-5. Traceability Matrix
-6. Defect Report
+3. Automated Test Scripts (PHPUnit + Selenium/Pytest POM + Playwright)
+4. Performance Test Scripts (PHPUnit)
+5. Test Execution Report
+6. Traceability Matrix
+7. Final Test Report
 
 ---
 
@@ -182,6 +183,6 @@ The System Under Test (SUT) is a complete event management system that includes:
 
 ---
 
-**Document Version**: 1.0  
-**Date**: December 26, 2025  
-**Author**: Test Team (AI-Assisted)
+**Document Version**: 1.1  
+**Date**: December 29, 2025  
+**Author**: Adam, Afra
