@@ -31,7 +31,40 @@ class AAB_Event extends Model
         'end_date' => 'datetime',
         'is_free' => 'boolean',
         'price' => 'decimal:2',
+        'status' => 'string',
     ];
+
+    /**
+     * Scope a query to only include active events.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
+
+    /**
+     * Scope a query to only include archived events.
+     */
+    public function scopeArchived($query)
+    {
+        return $query->where('status', 'archived');
+    }
+
+    /**
+     * Check if the event is archived.
+     */
+    public function isArchived(): bool
+    {
+        return $this->status === 'archived';
+    }
+
+    /**
+     * Check if the event is active.
+     */
+    public function isActive(): bool
+    {
+        return $this->status === 'active';
+    }
 
     public function category()
     {

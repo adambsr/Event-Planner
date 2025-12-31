@@ -20,6 +20,11 @@ class AAB_RegistrationController extends Controller
                 ->with('error', 'You must be logged in to register for an event.');
         }
 
+        // Check if event is archived
+        if ($event->isArchived()) {
+            abort(403, 'Registration is not allowed for archived events.');
+        }
+
         // Check if event is full
         if ($event->isFull()) {
             return redirect()->route('events.show', $event)
@@ -53,6 +58,11 @@ class AAB_RegistrationController extends Controller
     {
         if (!Auth::check()) {
             return redirect()->route('login');
+        }
+
+        // Check if event is archived
+        if ($event->isArchived()) {
+            abort(403, 'Modifications are not allowed for archived events.');
         }
 
         $registration = AAB_Registration::where('user_id', Auth::id())

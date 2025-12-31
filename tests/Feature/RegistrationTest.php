@@ -329,4 +329,122 @@ class RegistrationTest extends TestCase
         // Assert
         $response->assertRedirect(route('login'));
     }
+
+    /**
+     * TC-REG-ARCH-001: Cannot register for archived event
+     * Technique: State Transition (Archived status blocks registration)
+     * 
+     * @test
+     */
+    public function test_cannot_register_for_archived_event(): void
+    {
+        // Arrange
+        $archivedEvent = AAB_Event::factory()->create([
+            'title' => 'Archived Event',
+            'status' => 'archived',
+            'capacity' => 100,
+            'category_id' => $this->category->id,
+            'created_by' => $this->event->created_by,
+        ]);
+
+        $this->actingAs($this->user);
+
+        // Act
+        $response = $this->post('/events/' . $archivedEvent->id . '/register');
+
+        // Assert
+        $response->assertStatus(403);
+        $this->assertDatabaseMissing('aab_registrations', [
+            'user_id' => $this->user->id,
+            'event_id' => $archivedEvent->id,
+        ]);
+    }
+
+    /**
+     * TC-REG-ARCH-002: Cannot unregister from archived event
+     * Technique: State Transition (Archived status blocks unregistration)
+     * 
+     * @test
+     */
+    public function test_cannot_unregister_from_archived_event(): void
+    {
+        // Arrange - Create registration before event is archived
+        $eventToArchive = AAB_Event::factory()->create([
+            'title' => 'Event to Archive',
+            'status' => 'active',
+            'capacity' => 100,
+            'category_id' => $this->category->id,
+            'created_by' => $this->event->created_by,
+        ]);
+
+        AAB_Registration::create([
+            'user_id' => $this->user->id,
+            'event_id' => $eventToArchive->id,
+        ]);
+
+        // Archive the event
+        $eventToArchive->update(['status' => 'archived']);
+
+        $this->actingAs($this->user);
+
+        // Act
+        $response = $this->delete('/events/' . $eventToArchive->id . '/unregister');
+
+        // Assert
+        $response->assertStatus(403);
+        
+        // Registration should still exist
+        $this->assertDatabaseHas('aab_registrations', [
+            'user_id' => $this->user->id,
+            'event_id' => $eventToArchive->id,
+        ]);
+    }
+
+    /**
+     * TC-REG-ARCH-003: Public user cannot view archived event
+     * Technique: State Transition (Archived status blocks public access)
+     * 
+     * @test
+     */
+    public function test_public_user_cannot_view_archived_event(): void
+    {
+        // Arrange
+        $archivedEvent = AAB_Event::factory()->create([
+            'title' => 'Hidden Archived Event',
+            'status' => 'archived',
+            'category_id' => $this->category->id,
+            'created_by' => $this->event->created_by,
+        ]);
+
+        // Act - Access as guest
+        $response = $this->get('/events/' . $archivedEvent->id);
+
+        // Assert
+        $response->assertStatus(404);
+    }
+
+    /**
+     * TC-REG-ARCH-004: Logged-in regular user cannot view archived event
+     * Technique: State Transition (Archived status blocks regular user access)
+     * 
+     * @test
+     */
+    public function test_regular_user_cannot_view_archived_event(): void
+    {
+        // Arrange
+        $archivedEvent = AAB_Event::factory()->create([
+            'title' => 'Hidden Archived Event',
+            'status' => 'archived',
+            'category_id' => $this->category->id,
+            'created_by' => $this->event->created_by,
+        ]);
+
+        $this->actingAs($this->user);
+
+        // Act
+        $response = $this->get('/events/' . $archivedEvent->id);
+
+        // Assert
+        $response->assertStatus(404);
+    }
 }

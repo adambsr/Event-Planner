@@ -25,7 +25,17 @@
         <!-- Events Table Card -->
         <div class="events-table-card">
             <div class="table-header">
-                <h2 class="table-title">Events</h2>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <h2 class="table-title">Events</h2>
+                    <!-- Status Filter -->
+                    <form action="{{ route('events.list') }}" method="GET" style="display: flex; align-items: center; gap: 10px;">
+                        <select name="status" onchange="this.form.submit()" style="padding: 8px 12px; border: 1px solid #D0D5DD; border-radius: 6px; font-size: 14px; background: white;">
+                            <option value="">All Status</option>
+                            <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
+                            <option value="archived" {{ request('status') == 'archived' ? 'selected' : '' }}>Archived</option>
+                        </select>
+                    </form>
+                </div>
                 @can('edit events')
                     <a href="{{ route('events.create') }}" class="btn-create-event">Create event</a>
                 @endcan
@@ -41,12 +51,13 @@
                             <th>Pricing</th>
                             <th>Capacity</th>
                             <th>Place</th>
+                            <th>Status</th>
                             <th class="actions-column"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($events as $event)
-                            <tr>
+                            <tr class="{{ $event->isArchived() ? 'archived-row' : '' }}">
                                 <td>
                                     <span class="event-name">{{ $event->title }}</span>
                                 </td>
@@ -61,6 +72,13 @@
                                 </td>
                                 <td>{{ $event->capacity }}</td>
                                 <td>{{ $event->place }}</td>
+                                <td>
+                                    @if($event->isArchived())
+                                        <span class="status-badge archived">Archived</span>
+                                    @else
+                                        <span class="status-badge active">Active</span>
+                                    @endif
+                                </td>
                                 <td>
                                     @can('edit events')
                                         <div class="action-menu" id="actionMenu{{ $event->id }}">
@@ -97,7 +115,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="empty-state">
+                                <td colspan="8" class="empty-state">
                                     <p>No events found. @can('edit events')<a href="{{ route('events.create') }}">Create your first event</a>@endcan</p>
                                 </td>
                             </tr>

@@ -34,6 +34,11 @@
                         <span style="background: #F2F4F7; color: #344054; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500;">
                             {{ $event->category->name }}
                         </span>
+                        @if($event->isArchived())
+                            <span style="background: #FEF3F2; color: #B42318; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; margin-left: 8px;">
+                                Archived Event
+                            </span>
+                        @endif
                     </div>
                 @endif
 
@@ -110,34 +115,40 @@
                 </div>
 
                 <!-- Registration Button -->
-                @auth
-                    @if($isRegistered)
-                        <form action="{{ route('registrations.destroy', $event) }}" method="POST" style="margin-bottom: 16px;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" style="width: 100%; background: #DC2626; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer;">
-                                Unregister from Event
-                            </button>
-                        </form>
-                    @else
-                        @if(!$event->isFull())
-                            <form action="{{ route('registrations.store', $event) }}" method="POST" style="margin-bottom: 16px;">
+                @if($event->isArchived())
+                    <div style="background: #FEF3F2; border: 1px solid #FECDCA; color: #B42318; padding: 14px 24px; border-radius: 8px; font-weight: 600; font-size: 16px; text-align: center;">
+                        This event has been archived. Registration is closed.
+                    </div>
+                @else
+                    @auth
+                        @if($isRegistered)
+                            <form action="{{ route('registrations.destroy', $event) }}" method="POST" style="margin-bottom: 16px;">
                                 @csrf
-                                <button type="submit" style="width: 100%; background: #10B981; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer;">
-                                    Register for Event
+                                @method('DELETE')
+                                <button type="submit" style="width: 100%; background: #DC2626; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer;">
+                                    Unregister from Event
                                 </button>
                             </form>
                         @else
-                            <button disabled style="width: 100%; background: #D1D5DB; color: #6B7280; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: not-allowed;">
-                                Event Full
-                            </button>
+                            @if(!$event->isFull())
+                                <form action="{{ route('registrations.store', $event) }}" method="POST" style="margin-bottom: 16px;">
+                                    @csrf
+                                    <button type="submit" style="width: 100%; background: #10B981; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer;">
+                                        Register for Event
+                                    </button>
+                                </form>
+                            @else
+                                <button disabled style="width: 100%; background: #D1D5DB; color: #6B7280; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: not-allowed;">
+                                    Event Full
+                                </button>
+                            @endif
                         @endif
-                    @endif
-                @else
-                    <a href="{{ route('login') }}" style="display: block; width: 100%; background: #10B981; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; text-align: center; text-decoration: none;">
-                        Login to Rregister
-                    </a>
-                @endauth
+                    @else
+                        <a href="{{ route('login') }}" style="display: block; width: 100%; background: #10B981; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; text-align: center; text-decoration: none;">
+                            Login to Rregister
+                        </a>
+                    @endauth
+                @endif
 
                 @if(session('success'))
                     <div style="background: #D1FAE5; color: #065F46; padding: 12px; border-radius: 8px; margin-top: 16px;">

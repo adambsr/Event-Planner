@@ -425,4 +425,101 @@ class EventTest extends TestCase
             'price' => 0,
         ]);
     }
+
+    /**
+     * TC-EVT-ARCH-001: Admin can view archived event details
+     * Technique: Authorization Testing
+     * 
+     * @test
+     */
+    public function test_admin_can_view_archived_event(): void
+    {
+        // Arrange
+        $archivedEvent = AAB_Event::factory()->create([
+            'title' => 'Archived Admin Event',
+            'status' => 'archived',
+            'category_id' => $this->category->id,
+            'created_by' => $this->admin->id,
+        ]);
+
+        $this->actingAs($this->admin);
+
+        // Act
+        $response = $this->get('/events/' . $archivedEvent->id);
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertSee('Archived Admin Event');
+        $response->assertSee('Archived Event'); // Badge text
+    }
+
+    /**
+     * TC-EVT-ARCH-002: Admin events list shows status column
+     * Technique: Functional Testing
+     * 
+     * @test
+     */
+    public function test_admin_events_list_shows_status(): void
+    {
+        // Arrange
+        AAB_Event::factory()->create([
+            'title' => 'Active Test Event',
+            'status' => 'active',
+            'category_id' => $this->category->id,
+            'created_by' => $this->admin->id,
+        ]);
+
+        AAB_Event::factory()->create([
+            'title' => 'Archived Test Event',
+            'status' => 'archived',
+            'category_id' => $this->category->id,
+            'created_by' => $this->admin->id,
+        ]);
+
+        $this->actingAs($this->admin);
+
+        // Act
+        $response = $this->get('/admin/events');
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertSee('Active Test Event');
+        $response->assertSee('Archived Test Event');
+        $response->assertSee('status-badge active'); // CSS class for active badge
+        $response->assertSee('status-badge archived'); // CSS class for archived badge
+    }
+
+    /**
+     * TC-EVT-ARCH-003: Admin can filter by status
+     * Technique: Functional Testing
+     * 
+     * @test
+     */
+    public function test_admin_can_filter_events_by_status(): void
+    {
+        // Arrange
+        AAB_Event::factory()->create([
+            'title' => 'Active Filter Event',
+            'status' => 'active',
+            'category_id' => $this->category->id,
+            'created_by' => $this->admin->id,
+        ]);
+
+        AAB_Event::factory()->create([
+            'title' => 'Archived Filter Event',
+            'status' => 'archived',
+            'category_id' => $this->category->id,
+            'created_by' => $this->admin->id,
+        ]);
+
+        $this->actingAs($this->admin);
+
+        // Act - Filter by archived only
+        $response = $this->get('/admin/events?status=archived');
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertSee('Archived Filter Event');
+        $response->assertDontSee('Active Filter Event');
+    }
 }

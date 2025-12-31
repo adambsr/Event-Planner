@@ -1129,6 +1129,35 @@ body {
     color: #026AA2;
 }
 
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: #ECFDF5;
+    color: #027A48;
+}
+
+.status-badge.archived {
+    background: #FEF3F2;
+    color: #B42318;
+}
+
+/* Archived Event Row Styling */
+.archived-row {
+    background-color: #F9FAFB;
+    opacity: 0.8;
+}
+
+.archived-row .event-name {
+    color: #667085;
+}
+
 .actions-column {
     width: 50px;
     text-align: center;

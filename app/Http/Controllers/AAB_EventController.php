@@ -17,7 +17,7 @@ class AAB_EventController extends Controller
     public function index(Request $request)
     {
         // Public view - only active events
-        $query = AAB_Event::with('category')->where('status', 'active');
+        $query = AAB_Event::with('category')->active();
 
         // Search functionality
         if ($request->filled('search')) {
@@ -52,15 +52,18 @@ class AAB_EventController extends Controller
     {
         $query = AAB_Event::with('category');
 
-        // Search functionality
-        if ($request->has('search')) {
-            $query->where('title', 'like', '%' . $request->search . '%')
-                  ->orWhere('description', 'like', '%' . $request->search . '%');
+        // Filter by status first
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
         }
 
-        // Filter by status
-        if ($request->has('status')) {
-            $query->where('status', $request->status);
+        // Search functionality (using closure to properly group OR conditions)
+        if ($request->filled('search')) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('description', 'like', '%' . $searchTerm . '%');
+            });
         }
 
         $events = $query->orderBy('start_date', 'desc')->paginate(20);
@@ -113,6 +116,11 @@ class AAB_EventController extends Controller
      */
     public function show(AAB_Event $event)
     {
+        // Block access to archived events for public users
+        if ($event->isArchived() && (!auth()->check() || !auth()->user()->can('edit events'))) {
+            abort(404, 'Event not found.');
+        }
+
         $event->load('category', 'creator', 'registrations.user');
         $isRegistered = Auth::check() && $event->registrations()
             ->where('user_id', Auth::id())
