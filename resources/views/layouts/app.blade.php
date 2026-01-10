@@ -10,17 +10,19 @@
     @stack('styles')
 </head>
 <body>
-    @if(!request()->routeIs('login') && !request()->routeIs('register'))
-        @include('layouts.header')
-    @endif
+    <div class="page-wrapper">
+        @if(!request()->routeIs('login') && !request()->routeIs('register'))
+            @include('layouts.header')
+        @endif
 
-    <main>
-        @yield('content')
-    </main>
+        <main class="main-content">
+            @yield('content')
+        </main>
 
-    @if(!request()->routeIs('login') && !request()->routeIs('register'))
-        @include('layouts.footer')
-    @endif
+        @if(!request()->routeIs('login') && !request()->routeIs('register'))
+            @include('layouts.footer')
+        @endif
+    </div>
 
     @stack('scripts')
 </body>

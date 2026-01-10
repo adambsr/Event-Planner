@@ -16,6 +16,21 @@ body {
     color: #000000;
 }
 
+/* Page wrapper for sticky footer */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
 /* ============================================
    Container & Layout
    ============================================ */
@@ -417,7 +432,7 @@ body {
 }
 
 .search-box input::placeholder {
-    color: #F8F8FA;
+    color: rgba(0, 0, 0, 0.52);
 }
 
 .search-icon {
@@ -1148,6 +1163,32 @@ body {
     color: #B42318;
 }
 
+/* Role Badges */
+.role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 4px;
+    text-transform: capitalize;
+}
+
+.role-badge.role-admin {
+    background: #F4F3FF;
+    color: #5925DC;
+}
+
+.role-badge.role-manager {
+    background: #EFF8FF;
+    color: #175CD3;
+}
+
+.role-badge.role-user {
+    background: #ECFDF3;
+    color: #027A48;
+}
+
 /* Archived Event Row Styling */
 .archived-row {
     background-color: #F9FAFB;
@@ -1156,6 +1197,72 @@ body {
 
 .archived-row .event-name {
     color: #667085;
+}
+
+/* Unarchive button styling */
+.action-menu-item.unarchive {
+    color: #027A48;
+}
+
+.action-menu-item.unarchive:hover {
+    background: #ECFDF5;
+}
+
+.action-menu-item.unarchive svg path {
+    stroke: #027A48;
+}
+
+/* Pagination Fixes */
+.table-pagination nav,
+[role="navigation"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-pagination nav > div,
+[role="navigation"] > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.table-pagination nav svg,
+[role="navigation"] svg {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.table-pagination nav span,
+.table-pagination nav a,
+[role="navigation"] span,
+[role="navigation"] a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+/* Hide mobile pagination text */
+.table-pagination nav > div:first-child,
+[role="navigation"] > div:first-child:not(:last-child) {
+    display: none;
+}
+
+/* Ensure pagination items are inline */
+.table-pagination nav > div:last-child,
+[role="navigation"] > div:last-child {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
 
 .actions-column {

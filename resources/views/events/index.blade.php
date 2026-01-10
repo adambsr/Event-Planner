@@ -29,7 +29,6 @@
                         onkeypress="if(event.key === 'Enter') { this.form.submit(); }"
                         oninput="handleSearchInput(this)"
                     >
-                    <span class="search-icon">🔍</span>
                 </div>
                 <select name="weekday" class="filter-select" onchange="this.form.submit()">
                     <option value="">Weekdays</option>

@@ -182,4 +182,16 @@ class AAB_EventController extends Controller
         return redirect()->route('events.list')
             ->with('success', 'Event archived successfully.');
     }
+
+    /**
+     * Restore an archived event back to active status.
+     */
+    public function restore(AAB_Event $event)
+    {
+        $this->authorize('delete events');
+        $event->update(['status' => 'active']);
+
+        return redirect()->route('events.list')
+            ->with('success', 'Event restored successfully.');
+    }
 }

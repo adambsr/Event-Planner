@@ -90,6 +90,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/events/{event}/edit', [AAB_EventController::class, 'edit'])->name('events.edit');
     Route::put('/events/{event}', [AAB_EventController::class, 'update'])->name('events.update');
     Route::delete('/events/{event}', [AAB_EventController::class, 'destroy'])->name('events.destroy');
+    Route::patch('/events/{event}/restore', [AAB_EventController::class, 'restore'])->name('events.restore');
     
     // Categories CRUD (modals handle create/edit forms)
     Route::post('/categories', [AAB_CategoryController::class, 'store'])->name('categories.store');

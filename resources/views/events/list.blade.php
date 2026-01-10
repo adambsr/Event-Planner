@@ -97,16 +97,29 @@
                                                         Edit
                                                     </a>
                                                 @can('delete events')
-                                                    <form action="{{ route('events.destroy', $event) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to archive this event?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="action-menu-item archive">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M2.66667 4H13.3333M12.6667 4V12.6667C12.6667 13.0203 12.5262 13.3594 12.2761 13.6095C12.026 13.8596 11.6869 14 11.3333 14H4.66667C4.31305 14 3.97391 13.8596 3.72381 13.6095C3.47371 13.3594 3.33333 13.0203 3.33333 12.6667V4M5.33333 4V2.66667C5.33333 2.31305 5.47371 1.97391 5.72381 1.72381C5.97391 1.47371 6.31305 1.33333 6.66667 1.33333H9.33333C9.68696 1.33333 10.0261 1.47371 10.2762 1.72381C10.5263 1.97391 10.6667 2.31305 10.6667 2.66667V4" stroke="#D92D20" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-                                                            </svg>
-                                                            Archive
-                                                        </button>
-                                                    </form>
+                                                    @if($event->isArchived())
+                                                        <form action="{{ route('events.restore', $event) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to restore this event?');">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" class="action-menu-item unarchive">
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M14 10V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10M11.3333 5.33333L8 2M8 2L4.66667 5.33333M8 2V10" stroke="#027A48" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                                Unarchive
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('events.destroy', $event) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to archive this event?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="action-menu-item archive">
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M2.66667 4H13.3333M12.6667 4V12.6667C12.6667 13.0203 12.5262 13.3594 12.2761 13.6095C12.026 13.8596 11.6869 14 11.3333 14H4.66667C4.31305 14 3.97391 13.8596 3.72381 13.6095C3.47371 13.3594 3.33333 13.0203 3.33333 12.6667V4M5.33333 4V2.66667C5.33333 2.31305 5.47371 1.97391 5.72381 1.72381C5.97391 1.47371 6.31305 1.33333 6.66667 1.33333H9.33333C9.68696 1.33333 10.0261 1.47371 10.2762 1.72381C10.5263 1.97391 10.6667 2.31305 10.6667 2.66667V4" stroke="#D92D20" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                                Archive
+                                                            </button>
+                                                        </form>
+                                                    @endif
                                                 @endcan
                                             </div>
                                         </div>

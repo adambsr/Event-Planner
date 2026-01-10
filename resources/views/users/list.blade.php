@@ -63,7 +63,7 @@
                                 <td>
                                     @if($user->roles->count() > 0)
                                         @foreach($user->roles as $role)
-                                            <span style="background: #F2F4F7; color: #344054; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-right: 4px;">
+                                            <span class="role-badge role-{{ strtolower($role->name) }}">
                                                 {{ $role->name }}
                                             </span>
                                         @endforeach
