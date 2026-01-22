@@ -5,164 +5,185 @@
 @section('content')
 <div class="container">
     <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
-        <!-- Back Button -->
-        <a href="{{ route('home') }}" style="display: inline-flex; align-items: center; margin-bottom: 30px; color: #344054; text-decoration: none; font-weight: 500;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
-                <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Back to Events
-        </a>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
-            <!-- Event Image -->
-            <div>
-                <div style="width: 100%; height: 400px; background-image: url('{{ $event->image ? asset('storage/' . $event->image) : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}'); background-size: cover; background-position: center; border-radius: 12px; position: relative;">
-                    @if($event->is_free)
-                        <div style="position: absolute; top: 20px; right: 20px; background: #10B981; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 14px;">
-                            FREE
-                        </div>
-                    @endif
-                </div>
-            </div>
-
-            <!-- Event Details -->
-            <div>
-                <h1 style="font-size: 32px; font-weight: 700; color: #101828; margin-bottom: 16px;">{{ $event->title }}</h1>
+        
+        <!-- Hero Section -->
+        <div class="event-hero">
+            <img 
+                src="{{ $event->image ? asset('storage/' . $event->image) : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80' }}" 
+                alt="{{ $event->title }}"
+                class="event-hero-image"
+            >
+            <div class="event-hero-overlay"></div>
+            
+            <!-- Back Button -->
+            <a href="{{ route('home') }}" class="back-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back
+            </a>
+            
+            @if($event->is_free)
+                <div class="free-badge-hero">FREE</div>
+            @endif
+            
+            <!-- Hero Content -->
+            <div class="event-hero-content">
+                <h1 class="event-hero-title">{{ $event->title }}</h1>
+                <p class="event-hero-place">{{ $event->place }}</p>
+                <p class="event-hero-description">{{ Str::limit($event->description, 200) }}</p>
                 
-                @if($event->category)
-                    <div style="margin-bottom: 24px;">
-                        <span style="background: #F2F4F7; color: #344054; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500;">
-                            {{ $event->category->name }}
-                        </span>
-                        @if($event->isArchived())
-                            <span style="background: #FEF3F2; color: #B42318; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; margin-left: 8px;">
-                                Archived Event
-                            </span>
-                        @endif
-                    </div>
-                @endif
-
-                <div style="margin-bottom: 24px; line-height: 1.8; color: #475467;">
-                    <p>{{ $event->description }}</p>
-                </div>
-
-                <!-- Event Info -->
-                <div style="background: #F9FAFB; padding: 24px; border-radius: 12px; margin-bottom: 24px;">
-                    <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; color: #667085;">
-                            <path d="M10 18.3333C14.6024 18.3333 18.3333 14.6024 18.3333 10C18.3333 5.39763 14.6024 1.66667 10 1.66667C5.39763 1.66667 1.66667 5.39763 1.66667 10C1.66667 14.6024 5.39763 18.3333 10 18.3333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 5V10L13.3333 11.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <div style="font-size: 12px; color: #667085; margin-bottom: 4px;">Start Date</div>
-                            <div style="font-weight: 600; color: #101828;">{{ $event->start_date->format('l, F d, Y g:i A') }}</div>
-                        </div>
-                    </div>
-
-                    @if($event->end_date)
-                    <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; color: #667085;">
-                            <path d="M10 18.3333C14.6024 18.3333 18.3333 14.6024 18.3333 10C18.3333 5.39763 14.6024 1.66667 10 1.66667C5.39763 1.66667 1.66667 5.39763 1.66667 10C1.66667 14.6024 5.39763 18.3333 10 18.3333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 5V10L13.3333 11.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <div style="font-size: 12px; color: #667085; margin-bottom: 4px;">End Date</div>
-                            <div style="font-weight: 600; color: #101828;">{{ $event->end_date->format('l, F d, Y g:i A') }}</div>
-                        </div>
-                    </div>
-                    @endif
-
-                    <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; color: #667085;">
-                            <path d="M17.5 8.33333C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33333C2.5 6.34421 3.29018 4.43655 4.6967 3.03004C6.10321 1.62352 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62352 15.3033 3.03004C16.7098 4.43655 17.5 6.34421 17.5 8.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 10.8333C11.3807 10.8333 12.5 9.71405 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71405 8.61929 10.8333 10 10.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <div style="font-size: 12px; color: #667085; margin-bottom: 4px;">Location</div>
-                            <div style="font-weight: 600; color: #101828;">{{ $event->place }}</div>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; color: #667085;">
-                            <path d="M10 1.66667V18.3333M1.66667 10H18.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <div style="font-size: 12px; color: #667085; margin-bottom: 4px;">Price</div>
-                            <div style="font-weight: 600; color: #101828;">
-                                @if($event->is_free)
-                                    Free
-                                @else
-                                    TND {{ number_format($event->price, 2) }}
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    @if($event->capacity)
-                    <div style="display: flex; align-items: center;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; color: #667085;">
-                            <path d="M16.6667 17.5V15.8333C16.6667 14.9493 16.3155 14.1014 15.6903 13.4763C15.0652 12.8512 14.2174 12.5 13.3333 12.5H6.66667C5.78261 12.5 4.93477 12.8512 4.30964 13.4763C3.68452 14.1014 3.33333 14.9493 3.33333 15.8333V17.5M13.3333 5.83333C13.3333 7.67428 11.841 9.16667 10 9.16667C8.15905 9.16667 6.66667 7.67428 6.66667 5.83333C6.66667 3.99238 8.15905 2.5 10 2.5C11.841 2.5 13.3333 3.99238 13.3333 5.83333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <div style="font-size: 12px; color: #667085; margin-bottom: 4px;">Capacity</div>
-                            <div style="font-weight: 600; color: #101828;">
-                                {{ $event->registrations()->count() }} / {{ $event->capacity }} registered
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                </div>
-
-                <!-- Registration Button -->
                 @if($event->isArchived())
-                    <div style="background: #FEF3F2; border: 1px solid #FECDCA; color: #B42318; padding: 14px 24px; border-radius: 8px; font-weight: 600; font-size: 16px; text-align: center;">
-                        This event has been archived. Registration is closed.
-                    </div>
+                    <span class="archived-notice">This event has been archived</span>
                 @else
                     @auth
                         @if($isRegistered)
-                            <form action="{{ route('registrations.destroy', $event) }}" method="POST" style="margin-bottom: 16px;">
+                            <form action="{{ route('registrations.destroy', $event) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" style="width: 100%; background: #DC2626; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer;">
-                                    Unregister from Event
-                                </button>
+                                <button type="submit" class="book-now-btn unregister">Unregister</button>
                             </form>
                         @else
                             @if(!$event->isFull())
-                                <form action="{{ route('registrations.store', $event) }}" method="POST" style="margin-bottom: 16px;">
+                                <form action="{{ route('registrations.store', $event) }}" method="POST" style="display: inline;">
                                     @csrf
-                                    <button type="submit" style="width: 100%; background: #10B981; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer;">
-                                        Register for Event
-                                    </button>
+                                    <button type="submit" class="book-now-btn">Book now</button>
                                 </form>
                             @else
-                                <button disabled style="width: 100%; background: #D1D5DB; color: #6B7280; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: not-allowed;">
-                                    Event Full
-                                </button>
+                                <button disabled class="book-now-btn">Event Full</button>
                             @endif
                         @endif
                     @else
-                        <a href="{{ route('login') }}" style="display: block; width: 100%; background: #10B981; color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; text-align: center; text-decoration: none;">
-                            Login to Rregister
-                        </a>
+                        <a href="{{ route('login') }}" class="book-now-btn">Book now</a>
                     @endauth
                 @endif
+                
+                @auth
+                    @if(auth()->user()->hasRole('admin'))
+                        <a href="{{ route('events.edit', $event) }}" class="edit-event-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.333 2.00004C11.5081 1.82494 11.716 1.68605 11.9447 1.59129C12.1735 1.49653 12.4187 1.44775 12.6663 1.44775C12.914 1.44775 13.1592 1.49653 13.3879 1.59129C13.6167 1.68605 13.8246 1.82494 13.9997 2.00004C14.1748 2.17513 14.3137 2.383 14.4084 2.61178C14.5032 2.84055 14.552 3.08575 14.552 3.33337C14.552 3.58099 14.5032 3.82619 14.4084 4.05497C14.3137 4.28374 14.1748 4.49161 13.9997 4.66671L4.99967 13.6667L1.33301 14.6667L2.33301 11L11.333 2.00004Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Edit
+                        </a>
+                    @endif
+                @endauth
+            </div>
+        </div>
+        
+        @if(session('success'))
+            <div class="success-message">{{ session('success') }}</div>
+        @endif
 
-                @if(session('success'))
-                    <div style="background: #D1FAE5; color: #065F46; padding: 12px; border-radius: 8px; margin-top: 16px;">
-                        {{ session('success') }}
+        @if(session('error'))
+            <div class="error-message">{{ session('error') }}</div>
+        @endif
+        
+        <!-- Details Grid -->
+        <div class="event-details-grid">
+            <!-- Description -->
+            <div class="detail-section">
+                <h2>Description</h2>
+                <p>{{ $event->description }}</p>
+            </div>
+            
+            <!-- Hours & Capacity -->
+            <div>
+                <div class="hours-section">
+                    <h2>Hours</h2>
+                    
+                    @php
+                        $startDate = $event->start_date;
+                        $endDate = $event->end_date;
+                        $durationDays = $endDate ? $startDate->copy()->startOfDay()->diffInDays($endDate->copy()->startOfDay()) + 1 : 1;
+                    @endphp
+                    
+                    @if($durationDays > 1)
+                        <div class="hour-item">
+                            <span class="hour-label">Duration:</span>
+                            <span class="hour-value">{{ $durationDays }} days</span>
+                        </div>
+                        @for($i = 0; $i < $durationDays; $i++)
+                            @php
+                                $currentDay = $startDate->copy()->addDays($i);
+                                $isFirstDay = $i === 0;
+                                $isLastDay = $i === $durationDays - 1;
+                                
+                                if ($isFirstDay) {
+                                    $dayStart = $startDate->format('g:iA');
+                                    $dayEnd = '11:59PM';
+                                } elseif ($isLastDay) {
+                                    $dayStart = '12:00AM';
+                                    $dayEnd = $endDate->format('g:iA');
+                                } else {
+                                    $dayStart = '12:00AM';
+                                    $dayEnd = '11:59PM';
+                                }
+                            @endphp
+                            <div class="hour-item">
+                                <span class="hour-label">{{ $currentDay->format('l, M d') }}:</span>
+                                <span class="hour-value">{{ $dayStart }} - {{ $dayEnd }}</span>
+                            </div>
+                        @endfor
+                    @else
+                        <div class="hour-item">
+                            <span class="hour-label">Event hours:</span>
+                            <span class="hour-value">{{ $event->start_date->format('g:iA') }} - {{ $event->end_date ? $event->end_date->format('g:iA') : 'TBD' }}</span>
+                        </div>
+                    @endif
+                </div>
+                
+                @if($event->capacity)
+                <div class="capacity-section">
+                    <h2>Capacity</h2>
+                    <div class="capacity-item">
+                        <span class="capacity-label">Seats number :</span>
+                        <span class="capacity-value">{{ $event->capacity }} persons</span>
                     </div>
-                @endif
-
-                @if(session('error'))
-                    <div style="background: #FEE2E2; color: #991B1B; padding: 12px; border-radius: 8px; margin-top: 16px;">
-                        {{ session('error') }}
-                    </div>
+                </div>
                 @endif
             </div>
         </div>
+        
+        <!-- Other Events Section -->
+        @if($otherEvents->count() > 0)
+        <div class="other-events-section">
+            <h2>Other events you may like</h2>
+            
+            <div class="other-events-grid">
+                @foreach($otherEvents as $otherEvent)
+                <div class="other-event-card" onclick="window.location.href='{{ route('events.show', $otherEvent) }}'">
+                    <div class="other-event-card-image">
+                        <img 
+                            src="{{ $otherEvent->image ? asset('storage/' . $otherEvent->image) : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}" 
+                            alt="{{ $otherEvent->title }}"
+                        >
+                        @if($otherEvent->is_free)
+                            <span class="other-event-card-badge free">FREE</span>
+                        @else
+                            <span class="other-event-card-badge">TND {{ number_format($otherEvent->price, 0) }}</span>
+                        @endif
+                    </div>
+                    <div class="other-event-card-content">
+                        <h3 class="other-event-card-title">
+                            <a href="{{ route('events.show', $otherEvent) }}">{{ $otherEvent->title }}</a>
+                        </h3>
+                        <p class="other-event-card-date">{{ $otherEvent->start_date->format('l, F d, g:iA') }}</p>
+                        <p class="other-event-card-meta">
+                            @if($otherEvent->is_free)
+                                ONLINE EVENT
+                            @else
+                                {{ Str::limit($otherEvent->place, 30) }}
+                            @endif
+                            · Attend anywhere
+                        </p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+        
     </div>
 </div>
 @endsection

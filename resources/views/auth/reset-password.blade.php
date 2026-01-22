@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Login - Event Planner')
+@section('title', 'Reset Password - Event Planner')
 
 @section('content')
 <div class="auth-container">
     <!-- Left Side - Image Background -->
     <div class="auth-left">
         <div class="auth-left-content">
-            <h1>Welcome Back</h1>
-            <p>To keep connected with us provide us with your information</p>
-            <a href="{{ route('register') }}" class="auth-left-btn">Register</a>
+            <h1>Set New Password</h1>
+            <p>Create a strong password for your account</p>
+            <a href="{{ route('login') }}" class="auth-left-btn">Back to Login</a>
         </div>
     </div>
 
-    <!-- Right Side - Login Form -->
+    <!-- Right Side - Reset Password Form -->
     <div class="auth-right">
         <div class="auth-form-container">
             <!-- Brand Name -->
@@ -23,15 +23,10 @@
             </div>
 
             <!-- Title -->
-            <h2 class="auth-title">Sign In to Event Planner</h2>
+            <h2 class="auth-title">Create New Password</h2>
+            <p class="auth-subtitle">Your new password must be different from previously used passwords.</p>
 
             <!-- Success/Error Messages -->
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
             @if($errors->any())
                 <div class="alert alert-error">
                     <ul style="list-style: none; padding: 0; margin: 0;">
@@ -42,9 +37,12 @@
                 </div>
             @endif
 
-            <!-- Login Form -->
-            <form action="{{ route('toLogin') }}" method="POST">
+            <!-- Reset Password Form -->
+            <form action="{{ route('password.update') }}" method="POST">
                 @csrf
+
+                <!-- Hidden Token -->
+                <input type="hidden" name="token" value="{{ $token }}">
 
                 <!-- Email Field -->
                 <div class="form-group">
@@ -52,8 +50,8 @@
                     <input 
                         type="email" 
                         name="email" 
-                        value="{{ old('email') }}"
-                        placeholder="Enter your mail" 
+                        value="{{ old('email', $email) }}"
+                        placeholder="Enter your email" 
                         required
                         class="form-input"
                     >
@@ -64,14 +62,11 @@
 
                 <!-- Password Field -->
                 <div class="form-group">
-                    <div class="password-header">
-                        <label class="form-label">Your password</label>
-                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
-                    </div>
+                    <label class="form-label">New Password</label>
                     <input 
                         type="password" 
                         name="password" 
-                        placeholder="Enter your password" 
+                        placeholder="Enter new password" 
                         required
                         class="form-input"
                     >
@@ -80,8 +75,20 @@
                     @enderror
                 </div>
 
+                <!-- Confirm Password Field -->
+                <div class="form-group">
+                    <label class="form-label">Confirm New Password</label>
+                    <input 
+                        type="password" 
+                        name="password_confirmation" 
+                        placeholder="Confirm new password" 
+                        required
+                        class="form-input"
+                    >
+                </div>
+
                 <!-- Submit Button -->
-                <button type="submit" class="btn-submit">Login</button>
+                <button type="submit" class="btn-submit">Reset Password</button>
             </form>
         </div>
     </div>

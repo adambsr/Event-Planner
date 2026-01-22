@@ -38,6 +38,46 @@ Route::post('/logout', [AAB_AuthController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
+| Password Reset Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/forgot-password', [AAB_AuthController::class, 'showForgotPasswordForm'])
+    ->middleware('guest')
+    ->name('password.request');
+
+Route::post('/forgot-password', [AAB_AuthController::class, 'sendResetLinkEmail'])
+    ->middleware('guest')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [AAB_AuthController::class, 'showResetPasswordForm'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+Route::post('/reset-password', [AAB_AuthController::class, 'resetPassword'])
+    ->middleware('guest')
+    ->name('password.update');
+
+/*
+|--------------------------------------------------------------------------
+| Email Verification Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/email/verify', [AAB_AuthController::class, 'showVerificationNotice'])
+    ->middleware('auth')
+    ->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [AAB_AuthController::class, 'verifyEmail'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
+
+Route::post('/email/verification-notification', [AAB_AuthController::class, 'resendVerificationEmail'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+/*
+|--------------------------------------------------------------------------
 | User Routes (Authenticated)
 |--------------------------------------------------------------------------
 */

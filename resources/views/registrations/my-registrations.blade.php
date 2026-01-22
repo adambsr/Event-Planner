@@ -44,7 +44,7 @@
                 <div style="grid-column: 1 / -1; text-align: center; padding: 60px; color: #000000;">
                     <p style="font-size: 18px; margin-bottom: 16px;">You haven't registered for any events yet.</p>
                     <a href="{{ route('home') }}" style="color: #10B981; text-decoration: none; font-weight: 600;">
-                        Browse Events →
+                        Browse Events
                     </a>
                 </div>
             @endforelse

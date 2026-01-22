@@ -10,8 +10,8 @@
         
         <div class="footer-links">
             <a href="{{ route('home') }}" class="footer-link">Home</a>
-            <a class="footer-link">About</a>
-            <a class="footer-link">Contact</a>
+            <a href="{{ route('login') }}" class="footer-link">Sign In</a>
+            <a href="{{ route('register') }}" class="footer-link">Sign Up</a>
         </div>
         
         <div class="footer-copyright">

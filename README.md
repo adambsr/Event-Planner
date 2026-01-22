@@ -18,7 +18,7 @@
 
 ## 📋 Overview
 
-AAB EventPlanner is a production-ready event management platform that enables organizations to create, manage, and publish events while allowing users to browse, search, and register seamlessly. Built with Laravel 11 and following modern development practices, it provides a robust foundation for event-driven applications.
+Event Planner is a production-ready event management platform that enables organizations to create, manage, and publish events while allowing users to browse, search, and register seamlessly. Built with Laravel 11 and following modern development practices, it provides a robust foundation for event-driven applications.
 
 ### 🎯 Target Users
 
@@ -85,7 +85,7 @@ AAB EventPlanner is a production-ready event management platform that enables or
 - PHP 8.2 or higher
 - Composer 2.x
 - Node.js 18+ & npm
-- MySQL 8.0+ (or SQLite for development)
+- MySQL 8.0+
 - Git
 
 ### Step-by-Step Setup

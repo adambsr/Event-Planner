@@ -7,8 +7,6 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-overlay"></div>
-        <button class="hero-nav prev" onclick="previousSlide()">‹</button>
-        <button class="hero-nav next" onclick="nextSlide()">›</button>
         <div class="hero-content">
             <h1 class="hero-title">Made for those who do</h1>
         </div>
@@ -56,6 +54,8 @@
                     <div class="event-image" style="background-image: url('{{ $event->image ? asset('storage/' . $event->image) : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }}');">
                         @if($event->is_free)
                             <div class="event-free-badge">FREE</div>
+                        @else
+                            <div class="event-price-badge">TND {{ number_format($event->price, 0) }}</div>
                         @endif
                     </div>
                     <div class="event-details">

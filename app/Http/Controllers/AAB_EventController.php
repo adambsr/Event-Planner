@@ -126,7 +126,16 @@ class AAB_EventController extends Controller
             ->where('user_id', Auth::id())
             ->exists();
         
-        return view('events.show', compact('event', 'isRegistered'));
+        // Get other events from the same category (excluding current event)
+        $otherEvents = AAB_Event::with('category')
+            ->active()
+            ->where('id', '!=', $event->id)
+            ->where('category_id', $event->category_id)
+            ->orderBy('start_date', 'asc')
+            ->limit(6)
+            ->get();
+        
+        return view('events.show', compact('event', 'isRegistered', 'otherEvents'));
     }
 
     /**
