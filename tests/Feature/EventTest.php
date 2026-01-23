@@ -450,7 +450,7 @@ class EventTest extends TestCase
         // Assert
         $response->assertStatus(200);
         $response->assertSee('Archived Admin Event');
-        $response->assertSee('Archived Event'); // Badge text
+        $response->assertSee('This event has been archived'); // Archive notice text
     }
 
     /**

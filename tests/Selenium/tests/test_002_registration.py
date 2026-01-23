@@ -101,15 +101,18 @@ class Test_002_Registration:
         )
         sleep(3)
         
-        # Verify redirect to login page
+        # Verify redirect to login page or email verification page
+        # (Laravel redirects to /email/verify when email verification is enabled)
         current_url = self.driver.current_url
-        assert "login" in current_url, f"Should redirect to login page, got: {current_url}"
+        assert "login" in current_url or "email/verify" in current_url, \
+            f"Should redirect to login or email verification page, got: {current_url}"
         
-        # Check for success message on login page
-        login_page = LoginPage(self.driver)
-        success_msg = login_page.get_success_message()
-        assert success_msg is not None or "login" in current_url, \
-            "Should show success message or be on login page"
+        # Check for success - either on login page with message or on email verify page
+        if "login" in current_url:
+            login_page = LoginPage(self.driver)
+            success_msg = login_page.get_success_message()
+            assert success_msg is not None or "login" in current_url, \
+                "Should show success message or be on login page"
         
         self.logger.info("*** Test TC-AUTH-010: PASSED ***")
     
@@ -213,10 +216,11 @@ class Test_002_Registration:
         )
         sleep(3)
         
-        # Verify redirect to login page (success)
+        # Verify redirect to login page or email verification page (success)
+        # (Laravel redirects to /email/verify when email verification is enabled)
         current_url = self.driver.current_url
-        assert "login" in current_url, \
-            f"Should redirect to login with valid password, got: {current_url}"
+        assert "login" in current_url or "email/verify" in current_url, \
+            f"Should redirect to login or email verification page with valid password, got: {current_url}"
         
         self.logger.info("*** Test TC-AUTH-014: PASSED ***")
     

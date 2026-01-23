@@ -1,0 +1,24 @@
+2026-01-23 00:41:09 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-001: Login Page Accessible ***
+2026-01-23 00:41:19 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-001: Valid Admin Login ***
+2026-01-23 00:41:29 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-002: Valid User Login ***
+2026-01-23 00:41:42 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-003: Invalid Login - Wrong Password ***
+2026-01-23 00:41:51 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-004: Invalid Login - Non-existent Email ***
+2026-01-23 00:41:59 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-006: Invalid Email Format ***
+2026-01-23 00:42:08 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-002: Register Page Accessible ***
+2026-01-23 00:42:17 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-010: Valid Registration ***
+2026-01-23 00:42:25 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-012: Password Mismatch ***
+2026-01-23 00:42:35 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-013: Password Too Short ***
+2026-01-23 00:42:45 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-014: Password At Minimum Length ***
+2026-01-23 00:42:54 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-015: Empty Name ***
+2026-01-23 00:43:03 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-NAVIGATE: Register to Login Navigation ***
+2026-01-23 00:43:11 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-001: Public Events Listing ***
+2026-01-23 00:43:20 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-010: Search Events by Title ***
+2026-01-23 00:43:29 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-012: Search No Results ***
+2026-01-23 00:43:38 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-030: View Event Details ***
+2026-01-23 00:43:47 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-HOME: Public Access ***
+2026-01-23 00:43:58 - AAB_EventPlanner_Tests - INFO - *** Test TC-EVT-USER: Logged In Event View ***
+2026-01-23 00:44:07 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-001: Register for Event ***
+2026-01-23 00:44:15 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-004: Register Without Login ***
+2026-01-23 00:44:24 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-005: Unregister from Event ***
+2026-01-23 00:44:35 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-010: View My Registrations ***
+2026-01-23 00:44:48 - AAB_EventPlanner_Tests - INFO - *** Test TC-REG-AUTH: My Registrations Auth ***

@@ -181,7 +181,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         // Assert
-        $response->assertRedirect(route('login'));
+        $response->assertRedirect(route('verification.notice'));
         $response->assertSessionHas('success');
         $this->assertDatabaseHas('users', [
             'email' => 'newuser@test.com',
@@ -270,7 +270,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         // Assert
-        $response->assertRedirect(route('login'));
+        $response->assertRedirect(route('verification.notice'));
         $this->assertDatabaseHas('users', ['email' => 'test@test.com']);
     }
 

@@ -1,0 +1,18 @@
+2026-01-23 11:11:10 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-001: Login Page Accessible ***
+2026-01-23 11:11:20 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-001: PASSED ***
+2026-01-23 11:11:23 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-001: Valid Admin Login ***
+2026-01-23 11:11:33 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-001: PASSED ***
+2026-01-23 11:11:37 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-002: Valid User Login ***
+2026-01-23 11:11:45 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-002: PASSED ***
+2026-01-23 11:11:48 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-003: Invalid Login - Wrong Password ***
+2026-01-23 11:11:57 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-003: PASSED ***
+2026-01-23 11:12:01 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-004: Invalid Login - Non-existent Email ***
+2026-01-23 11:12:08 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-004: PASSED ***
+2026-01-23 11:12:11 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-006: Invalid Email Format ***
+2026-01-23 11:12:18 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-006: PASSED ***
+2026-01-23 11:12:22 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-002: Register Page Accessible ***
+2026-01-23 11:12:28 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-VIEW-002: PASSED ***
+2026-01-23 11:12:31 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-010: Valid Registration ***
+2026-01-23 11:12:48 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-010: PASSED ***
+2026-01-23 11:12:52 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-012: Password Mismatch ***
+2026-01-23 11:12:59 - AAB_EventPlanner_Tests - INFO - *** Test TC-AUTH-012: PASSED ***
